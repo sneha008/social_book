@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SocialBook</title>
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body id="store" style="background-color: whitesmoke;">
+
+  <div id="banner">
+    <h2>SocialBook</h2>
+  </div>
+
+  <div style="float: right; color: darkblue;">
+    <span>welcome <%= current_user.firstname if current_user%></span>&nbsp;&nbsp;<%= link_to "logout", destroy_user_session_path, :method => 'delete' %>
+  </div>
+
+  <div id="side">
+  <p class="notice">
+    <%= notice %>
+  </p>
+
+  <p class="alert">
+    <%= alert %>
+  </p>
+ </div>
+
+<%= yield %>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+<div style="text-align: center; padding-left: 200px;">
+  <h3><b>SocialBook Users</b></h3>
+ 
+</div>
+
+<% @user.each do |user| %>
+<table align="center" border="0">
+  <tr>
+    <td><%= image_tag user.avatar.url(:thumb)%></td>
+    <td><%= user.firstname+" "+user.lastname %></td>
+    <td><%= user.currentcity %></td>
+    <td><%= button_to "Add as Friend", users_add_friend_path(:friend_id => user.id), :remote => true %></td>
+  </tr>
+
+</table>
+<% end %>
+
+<div style="text-align: left;">
+  <%= will_paginate @users %>
+</div>

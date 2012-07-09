@@ -1,0 +1,13 @@
+
+
+<div>
+  <%= image_tag current_user.avatar.url(:medium)%>
+  <br /><br />
+  <%= link_to "Home", users_welcome_page_path %>
+  <br /><br />
+  <%= link_to "Profile", users_profile_settings_path %>
+  <br /><br />
+  <%= link_to "Users", users_socialbook_users_path %>
+  <br /><br />
+  <%= link_to "Friends", users_friends_list_path %>
+</div>

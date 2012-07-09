@@ -1,0 +1,7 @@
+<div>
+  <%= link_to "Home", users_welcome_page_path %>
+  <br /><br />
+  <%= link_to "Edit Profile", "/users/edit_profile/#{current_user.id}" %>
+  <br /><br />
+  <%= link_to "Change Password", users_change_password_path  %>
+</div>

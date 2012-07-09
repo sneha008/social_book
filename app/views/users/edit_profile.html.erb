@@ -1,0 +1,45 @@
+<div>
+  <%= link_to "Home", users_welcome_page_path %>
+  <br /><br />
+  <%= link_to "Change Password", users_change_password_path  %>
+  
+</div>
+
+
+<%= form_for(@user,:url => {:action => "edit_profile"}, :html => {:multipart => "true"}) do |f| %>
+<table align="center" border="0">
+  <tr>
+    <th>Edit Profile</th>
+  </tr>
+
+  <tr>
+    <td><%= f.label :education, "Education:"%></td>
+    <td><%= f.text_field :education %></td>
+  </tr>
+
+  <tr>
+    <td><%= f.label :company, "Company:" %></td>
+    <td><%= f.text_field :company %></td>
+  </tr>
+
+  <tr>
+    <td><%= f.label :homecity, "Home City:" %></td>
+    <td><%= f.text_field :homecity %></td>
+  </tr>
+
+  <tr>
+    <td><%= f.label :currentcity, "Current City:" %></td>
+    <td><%= f.text_field :currentcity %></td>
+  </tr>
+
+  <tr>
+    <td><%= f.file_field :avatar %></td>
+  </tr>
+
+  <tr>
+    <td><%= f.submit :save %></td>
+  </tr>
+
+
+</table>
+<% end %>

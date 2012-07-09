@@ -1,0 +1,17 @@
+
+<div style="text-align: center; padding-left: 150px">
+  <h3><b>Friends List</b></h3>
+</div>
+
+<% @friends.each do |friends| %>
+<table align="center" border="0">
+  <tr>
+    <td><%= image_tag friends.avatar.url(:thumb) %></td>
+    <td><%= friends.firstname %></td>
+  </tr>
+</table>
+<% end %>
+
+<div style="text-align: center;">
+  <%= will_paginate @users %>
+</div>

@@ -1,0 +1,50 @@
+#banner {
+  background: darkblue;
+  padding-top: 0.01px;
+  padding-bottom: 0px;
+  border-bottom: 2px solid;
+  font: small-caps 40px/40px "Monotype Corosiva", sans-serif;
+  color: white;
+  text-align: center;
+}
+
+#store  .entry {
+  overflow: auto;
+  margin-top: 1em;
+  
+}
+
+#store  .title {
+  font-size: 120%;
+  font-family: sans-serif;
+}
+
+#store #notice {
+        color: #000;
+        border: 2px solid red;
+        padding: 1em;
+        margin-bottom: 2em;
+        background-color: #f0f0f0;
+        font: bold smaller sans-serif;
+}
+
+
+#store h1 {
+        font:  150% sans-serif;
+        color: #226;
+        border-bottom: 3px dotted #77d;
+}
+
+#store table tr td{
+     padding: 5px;
+     vertical-align: top;
+}
+
+#side {
+  float: left;
+  padding-top: 1em;
+  padding-left: 2em;
+  padding-bottom: 60em;
+  width: 11em;
+  background: whitesmoke;
+}
