@@ -1,5 +1,24 @@
 SocialBook::Application.routes.draw do
 
+  
+  match "users/create_event" => "users#create_event", :as => "create_event"
+
+  get "users/list_events"
+
+  match "users/like_list/:likeable_id" => "users#like_list", :as => "like_list"
+
+  match "users/dislike/:id" => "users#dislike", :as => "dislike"
+
+  match "users/like" => "users#like", :as => "like"
+
+  match "users/post_comment/:post_id" => "users#post_comment", :as => "post_comment"
+
+  match "users/post_status_update" => "users#post_status_update"
+
+  match "users/friends_profile/:id" => "users#friends_profile", :as => "friends_profile"
+
+  get "users/mutual_friends"
+
   get "users/friends_list"
 
   get "users/socialbook_users"

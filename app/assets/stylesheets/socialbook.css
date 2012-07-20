@@ -42,9 +42,31 @@
 
 #side {
   float: left;
-  padding-top: 1em;
-  padding-left: 2em;
+/*  padding-top: 1em;*/
+  padding-left: 0.1em;
   padding-bottom: 60em;
-  width: 11em;
+  width: 15.5em;
   background: whitesmoke;
+}
+
+#siderite {
+  float: right;
+  padding-top: 1em;
+  padding-bottom: 100em;
+  width: 10em;
+  background: whitesmoke;
+}
+
+#banner span{
+    font-size: large;
+    float: right;
+    color: white;
+    padding-right: 1em;
+}
+
+#banner div{
+    float: right;
+    color: white;
+    font-size: large;
+    
 }

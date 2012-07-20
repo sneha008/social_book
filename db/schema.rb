@@ -11,11 +11,52 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120705141405) do
+ActiveRecord::Schema.define(:version => 20120720112412) do
+
+  create_table "comments", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.string   "comment_on_post"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "event_users", :force => true do |t|
+    t.integer  "event_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "events", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "creator_id"
+    t.string   "venue"
+    t.datetime "start_datetime"
+    t.datetime "end_datetime"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "friends", :force => true do |t|
     t.integer  "user_id"
     t.integer  "friend_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "likes", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "likeable_id"
+    t.string   "likeable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "posts", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "post_status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

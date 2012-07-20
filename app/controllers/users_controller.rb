@@ -1,6 +1,15 @@
 class UsersController < ApplicationController
   def welcome_page
+    @post = current_user.posts.build
 
+    user = []
+    user << current_user.id
+    user << current_user.friends.map(&:friend_id)
+    user.flatten!
+    @posts = Post.user_friends_post(user)
+
+    
+    
   end
 
   def profile_settings
@@ -68,6 +77,94 @@ class UsersController < ApplicationController
   def friends_list
     @friends = User.find(current_user.friends.map(&:friend_id))
     @users = User.paginate :page => (params[:page]), :per_page => 6
+  end
+
+  
+  def friends_profile
+    user = []
+    @user = User.find(params[:id])
+    user << current_user.id
+    user << @user.id
+    user.flatten!
+    @mutual_friends = User.select('u.firstname').where(['f.user_id in (?)',user]).
+                      joins('as u inner join friends as f on f.friend_id = u.id').
+                      group('friend_id having count(friend_id) >= 2')
+    
+  end
+
+  def post_status_update
+    if request.post?
+      @post = current_user.posts.build(params[:post])
+      @post.save    
+    end    
+  end
+
+  def post_comment
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.build
+    
+    if request.post?
+     
+#      @comment = @post.comments.build(params[:comment])
+#      @comment.save
+
+       @comment = Comment.create(params[:comment].merge(:user_id => current_user.id, :post_id => @post.id))
+    end
+
+    respond_to do |format|
+      format.js
+      format.html
+    end
+    
+  end
+
+  def like
+    @like = Like.create(:likeable_id => params[:likeable_id], :likeable_type => params[:likeable_type], :user_id => current_user.id)
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+  def dislike
+    @dislike = Like.find(params[:id])
+    @likeable = @dislike.likeable
+    
+    @likeable_id = @dislike.likeable_id    
+    @likeable_type = @dislike.likeable_type
+    @dislike.destroy
+    
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+  def like_list
+    if params[:likeable_type] == "Post"
+      @like_list = Post.find(params[:likeable_id])
+    else
+      @like_list = Comment.find(params[:likeable_id])
+    end
+
+    render :layout => false
+    
+#
+#    @like_list = User.select('u.firstname,l.likeable_type,l.likeable_id').where('l.likeable_id in (?)', @like).
+#                 joins('as u inner join likes as l on u.id = l.user_id').
+#                 group('likeable_type,likeable_id')
+
+  end
+
+  def create_event
+
+    @friends = User.find(current_user.friends.map(&:friend_id))
+    @event = current_user.events.build
+    
+    if request.post?
+      @event = Event.create(params[:event])
+    end
   end
 
 end

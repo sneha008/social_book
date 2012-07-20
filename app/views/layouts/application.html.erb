@@ -10,23 +10,20 @@
 
   <div id="banner">
     <h2>SocialBook</h2>
+    <span>welcome <%= current_user.firstname if current_user%></span>&nbsp;&nbsp;<div><%= link_to "logout", destroy_user_session_path, :method => 'delete' %></div>
   </div>
 
-  <div style="float: right; color: darkblue;">
-    <span>welcome <%= current_user.firstname if current_user%></span>&nbsp;&nbsp;<%= link_to "logout", destroy_user_session_path, :method => 'delete' %>
+  <div>
+    <p class="notice">
+      <%= notice %>
+    </p>
+    <p class="alert">
+      <%= alert %>
+    </p>
   </div>
 
-  <div id="side">
-  <p class="notice">
-    <%= notice %>
-  </p>
+  <%= yield %>
 
-  <p class="alert">
-    <%= alert %>
-  </p>
- </div>
-
-<%= yield %>
 
 </body>
 </html>

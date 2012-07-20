@@ -1,13 +1,45 @@
-
-
-<div>
+<div style="float: left;width: 30%">
   <%= image_tag current_user.avatar.url(:medium)%>
   <br /><br />
   <%= link_to "Home", users_welcome_page_path %>
   <br /><br />
+  <%= link_to "Friends", users_friends_list_path %>
+  <br /><br />
   <%= link_to "Profile", users_profile_settings_path %>
   <br /><br />
   <%= link_to "Users", users_socialbook_users_path %>
-  <br /><br />
-  <%= link_to "Friends", users_friends_list_path %>
 </div>
+
+<div style="float: left;width: 55%">
+<%= form_for(@post, :url => {:action => "post_status_update"}, :remote => true) do |post|%>
+<table border="0" style="color: darkblue;">
+  <tr>
+    <td><b><%= post.label :post_status, "Update Status" %></b></td>
+  </tr>
+
+  <tr>
+    <td><%= post.text_area :post_status , :size => "50x3" %></td>
+  </tr>
+
+  <tr>
+    <td><%= post.submit :submit %></td>
+  </tr>
+<% end %>
+</table>
+
+
+  <div id="posts">
+    <% @posts.each do |post| %>
+      <%= render :partial => "post", :locals => {:post => post} %>
+    <% end %>
+  </div>
+
+  
+</div>
+
+<div style="float: right; width: 15%;">
+  <%= link_to "Create event", create_event_path %>
+</div>
+
+<div style="clear: both"/>
+
