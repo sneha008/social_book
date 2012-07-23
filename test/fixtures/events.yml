@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: 
+  description: 
+  creator_id: 
+  venue: 
+  start_datetime: 
+  end_datetime: 2012-07-20 16:34:06
+
+two:
+  name: 
+  description: 
+  creator_id: 
+  venue: 
+  start_datetime: 
+  end_datetime: 2012-07-20 16:34:06

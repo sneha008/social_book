@@ -1,0 +1,15 @@
+
+
+<% if com.user %> 
+  <%= image_tag com.user.avatar.url(:thumb) %>
+  <%= com.comment_on_post %>
+
+  <div id="comment_like_form_<%= com.id %>">
+    <%= render :partial => "like", :locals => {:post => com, :like_type => "Comment"} %>
+  </div>
+
+
+  <!-- <%= link_to "like",like_path(:likeable_id=>com.id, :likeable_type=>"Comment"), :id => "comment_like_link_#{com.id}", :remote => true %>
+  <span id="comment_like_count_#{com.id}">(<%= com.likes.count %>)</span><br /> -->
+
+<% end %>

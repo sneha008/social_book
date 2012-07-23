@@ -1,0 +1,7 @@
+/*
+$('#post_like_count_<%= @like.likeable_id %>').html("(<%= @like.likeable.likes.count.to_s %>)");
+$('#post_like_link_<%= @like.likeable_id %>').attr('href', "<%= dislike_path(@like.likeable_id) %>");
+$('#post_like_link_<%= @like.likeable_id %>').text('unlike');
+*/
+
+$('#<%= @like.likeable_type.downcase %>_like_form_<%= @like.likeable_id %>').html("<%= escape_javascript(render :partial => 'like', :locals => {:post => @like.likeable,:like_type => @like.likeable_type} )  %>")

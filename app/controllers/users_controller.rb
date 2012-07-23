@@ -161,10 +161,27 @@ class UsersController < ApplicationController
 
     @friends = User.find(current_user.friends.map(&:friend_id))
     @event = current_user.events.build
+
+#    event_users = @event.event_users.build
     
     if request.post?
+      params[:event][:event_users_attributes].delete_if {|x| x[:user_id] == "0" }     
+
       @event = Event.create(params[:event])
+
     end
+  end
+
+  def list_events
+
+    @event_list = Event.select('e.*').where('eu.user_id = (?)',current_user.id ).
+                  joins('as e inner join event_users as eu on e.id = eu.event_id')
+    if @event_list.empty?
+      render :text => "Event list empty...."
+    end
+#   @event_list = Event.find(current_user.event_users.map(&:user_id))
+
+
   end
 
 end

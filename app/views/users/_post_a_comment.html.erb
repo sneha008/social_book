@@ -1,0 +1,11 @@
+
+
+<%= form_for(comment, :url => {:action => "post_comment", :controller => "users", :post_id => post}, :remote => true) do |f| %>
+  <table>
+    <tr>
+      <td><%= f.text_area :comment_on_post, :size => "50x3" %></td>
+      <td><%= f.submit :comment %></td>
+    </tr>
+  </table>
+<% end %>
+

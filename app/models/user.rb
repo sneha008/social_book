@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :likes, :as => :likeable
   has_many :events, :foreign_key => "creator_id"
-  
+  has_many :event_users
   
   after_create :reciprocate_friends
 

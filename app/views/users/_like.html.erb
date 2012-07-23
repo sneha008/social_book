@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/base/jquery-ui.css" type="text/css" />
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/jquery-ui.min.js"></script>
+
+
+
+<% if post.likes.map(&:user_id).include? current_user.id 
+  like = post.likes.where("user_id = #{current_user.id}").first; %>
+  <%= link_to "unlike", dislike_path(like.id), :remote => true %>
+<% else %>
+  <%= link_to "Like", like_path(:likeable_id=>post.id, :likeable_type=>like_type), :remote => true%>
+<% end %>
+<span id="post_like_count_<%=post.id%>">(<%= post.likes.count %>)</span>
+<span id="post_like_list_<%=post.id %>"><%= link_to "people like this", like_list_path(:likeable_id => post.id, :likeable_type => like_type), :class => "ajax" %></span>
+
+
+<script type="text/javascript">
+  $(function (){
+    $('a.ajax').click(function() {
+      var url = this.href;
+      // show a spinner or something via css
+      var dialog = $('<div style="display:none" class="loading"></div>').appendTo('body');
+      // open the dialog
+      dialog.dialog({
+        // add a close listener to prevent adding multiple divs to the document
+        close: function(event, ui) {
+          // remove div with all data and events
+          dialog.remove();
+        },
+        modal: false
+      });
+      // load remote content
+      dialog.load(
+      url,
+      {}, // omit this param object to issue a GET request instead a POST request, otherwise you may provide post parameters within the object
+      function (responseText, textStatus, XMLHttpRequest) {
+        // remove the loading class
+        dialog.removeClass('loading');
+      }
+    );
+      //prevent the browser to follow the link
+      return false;
+    });
+  });
+</script>

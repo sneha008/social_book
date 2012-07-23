@@ -1,0 +1,7 @@
+
+<div id="like_dialog" >
+  <% @like_list.likes.each do |like| %>
+    <%= image_tag like.user.avatar.url(:thumb) %>
+    <%= like.user.firstname %><br />
+  <% end %>
+</div>

@@ -3,7 +3,7 @@ SocialBook::Application.routes.draw do
   
   match "users/create_event" => "users#create_event", :as => "create_event"
 
-  get "users/list_events"
+  match "users/list_events" => "users#list_events"
 
   match "users/like_list/:likeable_id" => "users#like_list", :as => "like_list"
 

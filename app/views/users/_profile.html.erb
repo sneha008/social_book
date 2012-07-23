@@ -1,0 +1,29 @@
+
+<div>
+  <%= image_tag @user.avatar.url(:medium) %>
+  <br /><br />
+  <%= link_to "Home", users_welcome_page_path(current_user.id) %>
+</div>
+
+<table align="left" border="0">
+  <tr>
+    <td><b>Education : </b></td>
+    <td><%= @user.education %></td>
+  </tr>
+
+  <tr>
+    <td><b>Company :</b></td>
+    <td><%= @user.company %></td>
+  </tr>
+
+  <tr>
+    <td><b>Home City :</b></td>
+    <td><%= @user.homecity %></td>
+  </tr>
+
+  <tr>
+    <td><b>Current City :</b></td>
+    <td><%= @user.currentcity %></td>
+  </tr>
+
+</table>

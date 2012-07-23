@@ -1,0 +1,11 @@
+
+<%= render "profile" %>
+
+<div style="text-align: right;">
+  <b>Mutual friends:</b><br />
+  <% @mutual_friends.each do |mutual_friends| %>
+  <%= mutual_friends.firstname %>
+  <% end %>
+</div>
+
+

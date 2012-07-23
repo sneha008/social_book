@@ -1,0 +1,28 @@
+<%= image_tag post.user.avatar.url(:thumb) %>
+<b><%= post.user.firstname %>:</b>
+<%= post.post_status %><br/>
+
+<div id="post_like_form_<%= post.id %>">
+  <%= render :partial => "like", :locals => {:post => post,:like_type => "Post"} %>
+</div>
+
+<%= link_to "Comment","#", :id => "comment_link_#{post.id}"%><br />
+
+<div id="post_comment_<%= post.id %>" style="display: none;">
+  <%= render :partial => "post_a_comment", :locals => {:comment => post.comments.build, :post => post.id} %>
+</div>
+
+<h4>comments:</h4>
+<div id="post_comment_list_<%= post.id%> ">
+  <% post.comments.each do |comm| %>
+    <%= render :partial => "comment_posted", :locals => {:com => comm} %>
+  <% end %>
+</div>
+<hr></hr>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#comment_link_<%= post.id %>").click(function(){
+      $("#post_comment_<%= post.id%>").toggle();
+    });
+  });
+</script>
