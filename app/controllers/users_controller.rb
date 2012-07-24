@@ -174,12 +174,17 @@ class UsersController < ApplicationController
 
   def list_events
 
+#    if request.post?
     @event_list = Event.select('e.*').where('eu.user_id = (?)',current_user.id ).
                   joins('as e inner join event_users as eu on e.id = eu.event_id')
     if @event_list.empty?
       render :text => "Event list empty...."
     end
+
+    
 #   @event_list = Event.find(current_user.event_users.map(&:user_id))
+
+#    end
 
 
   end

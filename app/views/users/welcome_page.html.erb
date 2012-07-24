@@ -22,7 +22,7 @@
   </tr>
 
   <tr>
-    <td><%= post.submit :submit %></td>
+    <td><%= post.submit :post %></td>
   </tr>
 <% end %>
 </table>
@@ -39,7 +39,7 @@
 
 <div style="float: right; width: 15%;">
   <%= link_to "Create event", create_event_path %><br /><br />
-  <%= link_to "Events", users_list_events_path %>
+  <%= link_to "Events", list_events_path %>
 </div>
 
 <div style="clear: both"/>

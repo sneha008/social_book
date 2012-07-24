@@ -1,15 +1,29 @@
 
+<div style="text-align: center; color: darkblue;">
+  <b><h3>Event list</h3></b>
+</div>
+<br />
+
+
 <% @event_list.each do |u| %>
-  <%= u.name %>
+<table align="center" border="0">
+  <tr>
+    <td><%= u.user.firstname %></td>
+    <td><%= u.name %></td>
+    <td><%= u.description %></td>
+    <td><%= u.venue %></td>
+    <td><%= u.start_datetime %></td>
+    <td><%= u.end_datetime %></td>
+  </tr>
+</table>
 <% end %>
 
 <%# @event_list.each do |event| %>
   <%#= event.name %>
   <%#= event.description %>
-  <%#= event.location %>
   <%#= event.venue %>
   <%#= event.start_datetime %>
   <%#= event.end_datetime %>
 <%# end %>
 
-events.e
+

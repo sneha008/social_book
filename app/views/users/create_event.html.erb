@@ -5,52 +5,52 @@
 </div>
 
 <%= form_for(@event, :url => {:action => "create_event"}) do |f| %>
-<table align="center" border="0" style="color: darkblue;">
-  <tr>
-    <td>
-      <div style="text-align: center; overflow: scroll; width: 300px; height: 200px;">
-        <% @friends.each do |friends| %>
-          <%= render :partial => "friends", :locals => {:friends => friends} %>
-          <%= fields_for "event[event_users_attributes][]", EventUser.new do |field| %>
-            <%= field.check_box :user_id, {}, friends.id.to_s %>
+  <table align="center" border="0" style="color: darkblue;">
+    <tr>
+      <td>
+        <div style="text-align: center; overflow: scroll; width: 300px; height: 200px;">
+          <% @friends.each do |friends| %>
+            <%= render :partial => "friends", :locals => {:friends => friends} %>
+            <%= fields_for "event[event_users_attributes][]", EventUser.new do |field| %>
+              <%= field.check_box :user_id, {}, friends.id.to_s %>
+            <% end %>
           <% end %>
-        <% end %>
-      </div>
-    </td>
-  </tr>
+        </div>
+      </td>
+    </tr>
 
-  <tr>
-    <td><%= f.label :name, "Name of Event:"%></td>
-    <td><%= f.text_field :name %></td>
-  </tr>
+    <tr>
+      <td><%= f.label :name, "Name of Event:"%></td>
+      <td><%= f.text_field :name %></td>
+    </tr>
 
-  <tr>
-    <td><%= f.label :description, "Description :" %></td>
-    <td><%= f.text_area :description, :size => "40x3" %></td>
-  </tr>
+    <tr>
+      <td><%= f.label :description, "Description :" %></td>
+      <td><%= f.text_area :description, :size => "40x3" %></td>
+    </tr>
 
-  <tr>
-    <td><%= f.hidden_field :creator_id, :value => current_user.id, :method => :post %></td>
-  </tr>
+    <tr>
+      <td><%= f.hidden_field :creator_id, :value => current_user.id, :method => :post %></td>
+    </tr>
 
-  <tr>
-    <td><%= f.label :venue, "Venue :" %></td>
-    <td><%= f.text_field :venue %></td>
-  </tr>
+    <tr>
+      <td><%= f.label :venue, "Venue :" %></td>
+      <td><%= f.text_field :venue %></td>
+    </tr>
 
-  <tr>
-    <td><%= f.label :start_datetime, "Start date and time :" %></td>
-    <td><%= f.text_field :start_datetime %></td>
-  </tr>
+    <tr>
+      <td><%= f.label :start_datetime, "Start date and time :" %></td>
+      <td><%= f.datetime_picker :start_datetime %></td>
+    </tr>
 
-  <tr>
-    <td><%= f.label :end_datetime, "End date and time :  " %></td>
-    <td><%= f.text_field :end_datetime %></td>
-  </tr>
+    <tr>
+      <td><%= f.label :end_datetime, "End date and time :  " %></td>
+      <td><%= f.datetime_picker :end_datetime %></td>
+    </tr>
 
-  <tr>
-    <td><%= f.submit :submit%> </td>
-    <td><%= button_to :cancel, :type => "reset" %></td>
-  </tr>
-</table>
+    <tr>
+      <td><%= f.submit :submit%> </td>
+      <td><%= button_to :cancel, :type => "reset" %></td>
+    </tr>
+  </table>
 <% end %>
