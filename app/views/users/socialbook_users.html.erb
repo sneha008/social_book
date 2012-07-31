@@ -3,6 +3,8 @@
     <th><h3><b>Users</b></h3></th>
   </tr>
 </table
+
+<div id="users_show">
 <% @user.each do |user| %>
 <table align="center" border="0">
   <tr>
@@ -13,6 +15,7 @@
   </tr>
 </table>
 <% end %>
+</div>
 
 <div style="text-align: left;">
   <%= will_paginate @users %>

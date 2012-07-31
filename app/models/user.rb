@@ -6,7 +6,11 @@ class User < ActiveRecord::Base
   has_many :likes, :as => :likeable
   has_many :events, :foreign_key => "creator_id"
   has_many :event_users
-  
+  has_many :receiver_events, :through => :event_users, :source => :event
+  has_many :shares, :foreign_key => "sharer_id"
+
+  scope :wall_share, lambda{|id| Post.joins(:shares).where(["post.user_id == (?)",id])}
+
   after_create :reciprocate_friends
 
   def reciprocate_friends

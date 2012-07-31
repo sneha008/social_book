@@ -1,6 +1,10 @@
 SocialBook::Application.routes.draw do
 
   
+  match "users/share_list/:post_id" => "users#share_list", :as => "share_list"
+
+  match "users/share_a_post/:post_id" => "users#share_a_post", :as => "share_a_post"
+
   match "users/create_event" => "users#create_event", :as => "create_event"
 
   match "users/list_events" => "users#list_events", :as => "list_events"

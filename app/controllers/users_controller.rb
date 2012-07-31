@@ -9,7 +9,6 @@ class UsersController < ApplicationController
     @posts = Post.user_friends_post(user)
 
     
-    
   end
 
   def profile_settings
@@ -72,11 +71,17 @@ class UsersController < ApplicationController
     users.flatten!
     @user = User.where(["id not in (?)",users])
     @users = User.paginate :page => (params[:page]), :per_page => 6
+        
   end
 
   def friends_list
     @friends = User.find(current_user.friends.map(&:friend_id))
     @users = User.paginate :page => (params[:page]), :per_page => 6
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   
@@ -96,7 +101,11 @@ class UsersController < ApplicationController
     if request.post?
       @post = current_user.posts.build(params[:post])
       @post.save    
-    end    
+    end
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   def post_comment
@@ -174,19 +183,48 @@ class UsersController < ApplicationController
 
   def list_events
 
-#    if request.post?
-    @event_list = Event.select('e.*').where('eu.user_id = (?)',current_user.id ).
-                  joins('as e inner join event_users as eu on e.id = eu.event_id')
-    if @event_list.empty?
-      render :text => "Event list empty...."
-    end
+#    @event_list = Event.select('e.*').where('eu.user_id = (?)',current_user.id ).
+#                  joins('as e inner join event_users as eu on e.id = eu.event_id')
+#    if @event_list.empty?
+#      render :text => "Event list empty...."
+#    end
+  end
 
-    
-#   @event_list = Event.find(current_user.event_users.map(&:user_id))
+  def share_a_post
 
+    @share = Share.create(:post_id => params[:post_id], :sharer_id => current_user.id)
+
+#    user = @share.Post.user_id
+#    @shares = User.wall_share(user)
+
+#    user1 = []
+#    user2 = []
+#    user = []
+#    if Post.shares.map(&:user_id).include? current_user.id
+#      user1 << current_user.friends.map(&:friend_id)
+#      user2 << Post.user_id.friends.map(&:friend_id)
+#      user = user1 & user2
+#      puts "------------"
+#      puts user.inspect
+#
+#      @shares = User.wall_share(user)
 #    end
 
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
 
+  def share_list
+    @share_list = Share.where(:post_id => params[:post_id]).group(:sharer_id)
+    
+    @post = Post.find(params[:post_id])
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
 end

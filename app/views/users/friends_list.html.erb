@@ -1,14 +1,6 @@
 
-<table align="center" border="0">
-  <tr>
-    <th><h3><b>Friends List</b></h3></th>
-  </tr>
-</table>
 
-<% @friends.each do |friends| %>
-  <%= render :partial => "friends", :locals => {:friends => friends} %>
-<% end %>
-
-<div style="text-align: center;">
-  <%= will_paginate @users %>
+<div id="friends_show">
+  <%= render :partial => "friends_list_disp" %>
 </div>
+

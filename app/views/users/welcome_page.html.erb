@@ -3,12 +3,16 @@
   <br /><br />
   <%= link_to "Home", users_welcome_page_path %>
   <br /><br />
-  <%= link_to "Friends", users_friends_list_path %>
-  <br /><br />
   <%= link_to "Profile", users_profile_settings_path %>
   <br /><br />
   <%= link_to "Users", users_socialbook_users_path %>
+  <br /><br />
+  <%= link_to "friends", users_friends_list_path, :remote => true %>
+<div id="friends_list_show">
 </div>
+
+</div>
+
 
 <div style="float: left;width: 55%">
 <%= form_for(@post, :url => {:action => "post_status_update"}, :remote => true) do |post|%>

@@ -12,8 +12,22 @@
   <%= render :partial => "post_a_comment", :locals => {:comment => post.comments.build, :post => post.id} %>
 </div>
 
+<% if post.user_id != current_user.id %>
+  <%= link_to "Share", share_a_post_path(:post_id => post.id), :remote => true %>
+<% end %>
+
+<%= link_to "shared by", share_list_path(:post_id => post.id), :remote => true %>
+
+<div id="post_share_list_<%= post.id %>">
+  
+</div>
+
+<div id="post_share_link_<%= post.id %>">
+  <%= render :partial => "post_share", :locals => {:post => post} %>
+</div>
+
 <h4>comments:</h4>
-<div id="post_comment_list_<%= post.id%> ">
+<div id="post_comment_list_<%= post.id %> ">
   <% post.comments.each do |comm| %>
     <%= render :partial => "comment_posted", :locals => {:com => comm} %>
   <% end %>
@@ -26,3 +40,4 @@
     });
   });
 </script>
+
