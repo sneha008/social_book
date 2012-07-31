@@ -1,0 +1,2 @@
+
+$('#post_share_list_<%= @post.id %>').html("<%= escape_javascript(render :partial => "share", :locals => {:share_list => @share_list}) %>")

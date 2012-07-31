@@ -1,0 +1,5 @@
+
+<% post.shares.each do |share| %>
+  <%= image_tag share.user.avatar.url(:thumb) %>
+  <%= share.post.post_status %><br />
+<% end %>

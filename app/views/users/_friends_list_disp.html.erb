@@ -1,0 +1,8 @@
+<% @friends.each do |friends| %>
+  <%= render :partial => "friends", :locals => {:friends => friends} %>
+<% end %>
+
+
+<%#*<div style="text-align: left;">%>
+  <%#= will_paginate @users %>
+<%#*</div>%>
