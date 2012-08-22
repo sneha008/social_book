@@ -7,7 +7,6 @@ class UsersController < ApplicationController
     user << current_user.friends.map(&:friend_id)
     user.flatten!
     @posts = Post.user_friends_post(user)
-
     
   end
 
@@ -98,9 +97,13 @@ class UsersController < ApplicationController
   end
 
   def post_status_update
+    @friend = []
+
     if request.post?
       @post = current_user.posts.build(params[:post])
-      @post.save    
+      @post.save
+      @friend = User.find(current_user.friends.map(&:friend_id))
+      Notifier.post_updated(@post,@friend).deliver
     end
 
     respond_to do |format|
@@ -112,12 +115,14 @@ class UsersController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = @post.comments.build
     
+
     if request.post?
      
 #      @comment = @post.comments.build(params[:comment])
 #      @comment.save
 
        @comment = Comment.create(params[:comment].merge(:user_id => current_user.id, :post_id => @post.id))
+       Notifier.comment_made(@post).deliver
     end
 
     respond_to do |format|

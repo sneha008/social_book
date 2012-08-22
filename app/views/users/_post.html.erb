@@ -18,9 +18,9 @@
 
 <%= link_to "shared by", share_list_path(:post_id => post.id), :remote => true %>
 
-<div id="post_share_list_<%= post.id %>">
+<span id="post_share_list_<%= post.id %>">
   
-</div>
+</span>
 
 <div id="post_share_link_<%= post.id %>">
   <%= render :partial => "post_share", :locals => {:post => post} %>
